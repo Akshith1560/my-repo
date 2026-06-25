@@ -1,0 +1,40 @@
+# Project 03 Report Template
+
+This is the Word template content for Project 03 converted from the Markdown template. Open in Word and adjust formatting, add diagrams/screenshots.
+
+Project Title
+
+Objective of the Project
+
+Problem Statement
+
+Software Requirements
+- OS, MySQL version, MySQL Workbench, required libraries/tools
+
+Flowchart / Block Diagram
+- Insert ER diagram and workflow diagrams
+
+Source Code with Explanation
+- Provide the main files and explain key functions/classes
+
+Description of Each Module/Function
+- Module purpose, inputs, outputs, error handling
+
+Input and Output Results
+- Example inputs, screenshots, sample query outputs
+
+Screenshots or Photographs
+- UI screenshots, Workbench model, terminal outputs
+
+Challenges Faced and Solutions
+
+Conclusion
+
+Future Scope
+
+References
+
+Appendix: SQL scripts and sample data file names:
+- ims_schema.sql
+- ims_sample_data.sql
+- ims_er.dot
