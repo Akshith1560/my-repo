@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <style>
+    .tbl { fill:#ffffff; stroke:#333333; stroke-width:1.5 }
+    .title { font: bold 14px sans-serif; }
+    .col { font: 12px monospace; }
+    .arrow { stroke:#333; stroke-width:1.2; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+
+  <!-- categories -->
+  <g transform="translate(40,40)">
+    <rect class="tbl" width="220" height="70" rx="6" ry="6" />
+    <text class="title" x="10" y="22">categories</text>
+    <text class="col" x="10" y="42">category_id PK</text>
+    <text class="col" x="10" y="58">name</text>
+  </g>
+
+  <!-- suppliers -->
+  <g transform="translate(300,40)">
+    <rect class="tbl" width="260" height="90" rx="6" ry="6" />
+    <text class="title" x="10" y="22">suppliers</text>
+    <text class="col" x="10" y="42">supplier_id PK</text>
+    <text class="col" x="10" y="58">name, contact_name, phone</text>
+  </g>
+
+  <!-- products -->
+  <g transform="translate(40,160)">
+    <rect class="tbl" width="380" height="120" rx="6" ry="6" />
+    <text class="title" x="10" y="22">products</text>
+    <text class="col" x="10" y="42">product_id PK, sku, name</text>
+    <text class="col" x="10" y="62">category_id FK -> categories</text>
+    <text class="col" x="10" y="82">supplier_id FK -> suppliers</text>
+    <text class="col" x="10" y="102">unit_price, reorder_level</text>
+  </g>
+
+  <!-- warehouses -->
+  <g transform="translate(460,160)">
+    <rect class="tbl" width="260" height="80" rx="6" ry="6" />
+    <text class="title" x="10" y="22">warehouses</text>
+    <text class="col" x="10" y="42">warehouse_id PK, name, location</text>
+  </g>
+
+  <!-- stock_levels -->
+  <g transform="translate(40,320)">
+    <rect class="tbl" width="360" height="80" rx="6" ry="6" />
+    <text class="title" x="10" y="22">stock_levels</text>
+    <text class="col" x="10" y="42">stock_id PK, product_id FK -> products</text>
+    <text class="col" x="10" y="62">warehouse_id FK -> warehouses, quantity</text>
+  </g>
+
+  <!-- purchase orders -->
+  <g transform="translate(460,320)">
+    <rect class="tbl" width="360" height="120" rx="6" ry="6" />
+    <text class="title" x="10" y="22">purchase_orders</text>
+    <text class="col" x="10" y="42">po_id PK, supplier_id FK -> suppliers</text>
+    <text class="col" x="10" y="62">po_number, order_date, status, total_amount</text>
+    <text class="col" x="10" y="82">purchase_order_items -> items</text>
+  </g>
+
+  <!-- sales orders -->
+  <g transform="translate(40,440)">
+    <rect class="tbl" width="380" height="120" rx="6" ry="6" />
+    <text class="title" x="10" y="22">sales_orders</text>
+    <text class="col" x="10" y="42">so_id PK, customer_id FK -> customers</text>
+    <text class="col" x="10" y="62">so_number, order_date, status, total_amount</text>
+  </g>
+
+  <!-- customers -->
+  <g transform="translate(460,460)">
+    <rect class="tbl" width="300" height="80" rx="6" ry="6" />
+    <text class="title" x="10" y="22">customers</text>
+    <text class="col" x="10" y="42">customer_id PK, name, contact_name</text>
+  </g>
+
+  <!-- inventory_transactions -->
+  <g transform="translate(820,160)">
+    <rect class="tbl" width="400" height="140" rx="6" ry="6" />
+    <text class="title" x="10" y="22">inventory_transactions</text>
+    <text class="col" x="10" y="42">txn_id PK, product_id FK -> products</text>
+    <text class="col" x="10" y="62">warehouse_id FK -> warehouses, txn_type, qty, unit_cost</text>
+  </g>
+
+  <!-- app_users / audit_logs -->
+  <g transform="translate(820,340)">
+    <rect class="tbl" width="360" height="100" rx="6" ry="6" />
+    <text class="title" x="10" y="22">app_users</text>
+    <text class="col" x="10" y="42">user_id PK, username, role</text>
+    <text class="title" x="10" y="66">audit_logs</text>
+    <text class="col" x="10" y="86">log_id PK, user_id FK -> app_users, action, details</text>
+  </g>
+
+  <!-- arrows (representative) -->
+  <line class="arrow" x1="260" y1="220" x2="300" y2="220" /> <!-- products -> suppliers -->
+  <line class="arrow" x1="220" y1="240" x2="220" y2="320" /> <!-- products -> stock_levels -->
+  <line class="arrow" x1="480" y1="320" x2="500" y2="320" /> <!-- warehouses -> purchase_order_items -->
+  <line class="arrow" x1="420" y1="420" x2="500" y2="420" /> <!-- sales_orders -> customers -->
+  <line class="arrow" x1="680" y1="260" x2="820" y2="260" /> <!-- purchase orders -> inventory_transactions -->
+
+  <text x="40" y="820" class="col">ER Diagram (simplified) — see ims_er.dot for Graphviz source</text>
+</svg>
