@@ -1,0 +1,33 @@
+digraph IMS {
+  graph [rankdir=LR, splines=ortho];
+  node [shape=record, fontname="Helvetica"];
+  categories [label="{categories|category_id PK\lname: varchar}"];
+  suppliers [label="{suppliers|supplier_id PK\lname,name,contact_name,phone,email,address}"];
+  warehouses [label="{warehouses|warehouse_id PK\lname,name,location,manager}"];
+  products [label="{products|product_id PK\lsku,name,category_id FK,supplier_id FK,unit_price,reorder_level}"];
+  stock_levels [label="{stock_levels|stock_id PK\lproduct_id FK,warehouse_id FK,quantity}"];
+  customers [label="{customers|customer_id PK\lname,contact_name,phone,email,address}"];
+  purchase_orders [label="{purchase_orders|po_id PK\lsupplier_id FK,po_number,order_date,expected_date,status,total_amount}"];
+  purchase_order_items [label="{purchase_order_items|poi_id PK\lpo_id FK,product_id FK,warehouse_id FK,qty_ordered,qty_received,unit_cost}"];
+  sales_orders [label="{sales_orders|so_id PK\lcustomer_id FK,so_number,order_date,ship_date,status,total_amount}"];
+  sales_order_items [label="{sales_order_items|soi_id PK\lso_id FK,product_id FK,warehouse_id FK,quantity,unit_price}"];
+  inventory_transactions [label="{inventory_transactions|txn_id PK\lproduct_id FK,warehouse_id FK,txn_type,reference_id,quantity,unit_cost}"];
+  app_users [label="{app_users|user_id PK\lusername,full_name,email,role}"];
+  audit_logs [label="{audit_logs|log_id PK\luser_id FK,action,table_name,record_id,details}"];
+
+  categories -> products [label="1..*"];
+  suppliers -> products [label="1..*"];
+  warehouses -> stock_levels [label="1..*"];
+  products -> stock_levels [label="1..*"];
+  suppliers -> purchase_orders [label="1..*"];
+  purchase_orders -> purchase_order_items [label="1..*"];
+  products -> purchase_order_items [label="1..*"];
+  warehouses -> purchase_order_items [label="1..*"];
+  customers -> sales_orders [label="1..*"];
+  sales_orders -> sales_order_items [label="1..*"];
+  products -> sales_order_items [label="1..*"];
+  warehouses -> sales_order_items [label="1..*"];
+  products -> inventory_transactions [label="1..*"];
+  warehouses -> inventory_transactions [label="1..*"];
+  app_users -> audit_logs [label="1..*"];
+}
